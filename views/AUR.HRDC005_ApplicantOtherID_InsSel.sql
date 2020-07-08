@@ -2,6 +2,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+-- Main source to load all other id's for an employee
 ALTER view [AUR].[HRDC005_ApplicantOtherID_InsSel] as
 
 SELECT DISTINCT T001.T001F005_EMPLOYEE_NO as EmployeeID
