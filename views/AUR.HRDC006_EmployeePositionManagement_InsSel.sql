@@ -4,6 +4,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 -- HRDC006 Employee Position Manamagement (Main Query)
+-- Gets all inscope employees and the positions 
 ALTER view [AUR].[HRDC006_EmployeePositionManagement_InsSel] as 
 
 SELECT 
