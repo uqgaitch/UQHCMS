@@ -3,7 +3,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
+-- HRDC006 Employee Position Manamagement (Main Query)
 ALTER view [AUR].[HRDC006_EmployeePositionManagement_InsSel] as 
 
 SELECT 
