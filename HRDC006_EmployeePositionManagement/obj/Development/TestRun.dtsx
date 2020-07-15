@@ -1,0 +1,2202 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/17/2020 12:00:48 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CA-CO-2CP83Z2"
+  DTS:CreatorName="UQ\uqmganga"
+  DTS:DTSID="{CA5DA0E3-CB40-430E-8D5D-DABEAF399AC5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.71"
+  DTS:LocaleID="3081"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{6456CEFE-F821-477A-B89B-002B06254901}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{112DEBA6-7FC3-4BE7-8D46-EB9810247272}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Test\ExcelTest.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[its-ds-sqltools.compute.dc.uq.edu.au.DQS_STAGING_DATA]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+      DTS:ObjectName="its-ds-sqltools.compute.dc.uq.edu.au.DQS_STAGING_DATA">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=its-ds-sqltools.compute.dc.uq.edu.au;Initial Catalog=DQS_STAGING_DATA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export to XLSX and TXT Files"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{de5eccae-d1d9-48e1-9116-4b6d1140dbe9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export to XLSX and TXT Files"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export to XLSX and TXT Files\Excel Destination"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Excel Destination"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Excel_Destination</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export to XLSX and TXT Files\Excel Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[EmployeeID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[FullName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FullName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[FullName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[FullName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[EmployeeTypeName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmployeeTypeName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeTypeName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[HireDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HireDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[HireDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ContinuousServiceDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContinuousServiceDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContinuousServiceDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContinuousServiceDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ProbationStartDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProbationStartDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ProbationStartDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationStartDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ProbationEndDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProbationEndDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ProbationEndDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationEndDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[EndEmploymentDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EndEmploymentDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EndEmploymentDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EndEmploymentDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[PositionStartDateForConversion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PositionStartDateForConversion"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PositionStartDateForConversion]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionStartDateForConversion]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[BenefitServiceDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BenefitServiceDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BenefitServiceDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BenefitServiceDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CompanyServiceDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CompanyServiceDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyServiceDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyServiceDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[SupervisoryOrganisationPositionManagementOrg]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SupervisoryOrganisationPositionManagementOrg"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[SupervisoryOrganisationPositionManagementOrg]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[SupervisoryOrganisationPositionManagementOrg]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CostCenterOrganisation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CostCenterOrganisation"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CostCenterOrganisation]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CostCenterOrganisation]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CompanyOrganisation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CompanyOrganisation"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyOrganisation]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyOrganisation]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[RegionOrganisation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RegionOrganisation"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[RegionOrganisation]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[RegionOrganisation]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[MatrixOrganisation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MatrixOrganisation"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[MatrixOrganisation]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[MatrixOrganisation]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[BusinessUnitOrganisation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BusinessUnitOrganisation"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BusinessUnitOrganisation]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessUnitOrganisation]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CustomOrganization1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomOrganization1"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization1]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization1]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CustomOrganization2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomOrganization2"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization2]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization2]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CustomOrganization3]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomOrganization3"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization3]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization3]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CustomOrganization4]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CustomOrganization4"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization4]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization4]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[JobPositionID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="JobPositionID"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobPositionID]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionID]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[JobPositionTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="JobPositionTitle"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobPositionTitle]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionTitle]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[JobCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="JobCode"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobCode]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobCode]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[PositionTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PositionTitle"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PositionTitle]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionTitle]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[BusinessTitle]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BusinessTitle"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BusinessTitle]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessTitle]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[Location]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Location"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Location]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[Location]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[WorkSpace]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WorkSpace"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkSpace]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkSpace]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[TimeType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TimeType"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TimeType]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[TimeType]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[DefaultWeeklyHours]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DefaultWeeklyHours"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DefaultWeeklyHours]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DefaultWeeklyHours]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ScheduledWeeklyHours]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ScheduledWeeklyHours"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ScheduledWeeklyHours]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ScheduledWeeklyHours]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[PayTypeName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PayTypeName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PayTypeName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PayTypeName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[AdditionalJobClassificationName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AdditionalJobClassificationName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AdditionalJobClassificationName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalJobClassificationName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CriticalJob]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CriticalJob"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CriticalJob]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CriticalJob]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[DifficultyToFill]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DifficultyToFill"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DifficultyToFill]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DifficultyToFill]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[CompanyInsiderTypeName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CompanyInsiderTypeName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyInsiderTypeName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyInsiderTypeName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[AnnualWorkPeriodName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AnnualWorkPeriodName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AnnualWorkPeriodName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AnnualWorkPeriodName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[DisbursementPlanPeriodName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DisbursementPlanPeriodName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DisbursementPlanPeriodName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DisbursementPlanPeriodName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[WorkHoursProfileDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WorkHoursProfileDescription"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkHoursProfileDescription]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkHoursProfileDescription]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[WorkShiftName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="WorkShiftName"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkShiftName]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkShiftName]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[HireReason]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HireReason"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[HireReason]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireReason]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[InternationalAssignmentTypes]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InternationalAssignmentTypes"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[InternationalAssignmentTypes]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentTypes]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[InternationalAssignmentReason]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InternationalAssignmentReason"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[InternationalAssignmentReason]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentReason]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[AdditionalPosition]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AdditionalPosition"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AdditionalPosition]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalPosition]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[EmployeeContractType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmployeeContractType"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeContractType]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractType]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[EmployeeContractStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmployeeContractStatus"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeContractStatus]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractStatus]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ContractDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContractDescription"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractDescription]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractDescription]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ContractEffectiveDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContractEffectiveDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractEffectiveDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractEffectiveDate]" />
+                    <inputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].Columns[ContractStartDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContractStartDate"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractStartDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[FullName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FullName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[HireDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="HireDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContinuousServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContinuousServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ProbationStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProbationStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ProbationEndDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProbationEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EndEmploymentDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="EndEmploymentDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PositionStartDateForConversion]"
+                      dataType="wstr"
+                      length="255"
+                      name="PositionStartDateForConversion" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BenefitServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="BenefitServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[SupervisoryOrganisationPositionManagementOrg]"
+                      dataType="wstr"
+                      length="255"
+                      name="SupervisoryOrganisationPositionManagementOrg" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CostCenterOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="CostCenterOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[RegionOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="RegionOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[MatrixOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="MatrixOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BusinessUnitOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="BusinessUnitOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization1]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization1" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization2]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization2" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization3]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization3" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CustomOrganization4]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization4" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobPositionID]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobPositionID" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobPositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobPositionTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[JobCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobCode" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="PositionTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[BusinessTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="BusinessTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Location]"
+                      dataType="wstr"
+                      length="255"
+                      name="Location" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkSpace]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkSpace" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[TimeType]"
+                      dataType="wstr"
+                      length="255"
+                      name="TimeType" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DefaultWeeklyHours]"
+                      dataType="wstr"
+                      length="255"
+                      name="DefaultWeeklyHours" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ScheduledWeeklyHours]"
+                      dataType="wstr"
+                      length="255"
+                      name="ScheduledWeeklyHours" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[PayTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="PayTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AdditionalJobClassificationName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AdditionalJobClassificationName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CriticalJob]"
+                      dataType="wstr"
+                      length="255"
+                      name="CriticalJob" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DifficultyToFill]"
+                      dataType="wstr"
+                      length="255"
+                      name="DifficultyToFill" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[CompanyInsiderTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyInsiderTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AnnualWorkPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AnnualWorkPeriodName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[DisbursementPlanPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      name="DisbursementPlanPeriodName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkHoursProfileDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkHoursProfileDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[WorkShiftName]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkShiftName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[HireReason]"
+                      dataType="wstr"
+                      length="255"
+                      name="HireReason" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[InternationalAssignmentTypes]"
+                      dataType="wstr"
+                      length="255"
+                      name="InternationalAssignmentTypes" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[InternationalAssignmentReason]"
+                      dataType="wstr"
+                      length="255"
+                      name="InternationalAssignmentReason" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[AdditionalPosition]"
+                      dataType="wstr"
+                      length="255"
+                      name="AdditionalPosition" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeContractType]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeContractType" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EmployeeContractStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeContractStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractEffectiveDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractEffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[ContractStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractStartDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export to XLSX and TXT Files\Excel Destination.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export to XLSX and TXT Files\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export to XLSX and TXT Files\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export to XLSX and TXT Files\Source for XLSX"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Source for XLSX"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[WD].[txHRDC006_EmployeePositionManagement_sel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export to XLSX and TXT Files\Source for XLSX.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[its-ds-sqltools.compute.dc.uq.edu.au.DQS_STAGING_DATA]"
+                  connectionManagerRefId="Package.ConnectionManagers[its-ds-sqltools.compute.dc.uq.edu.au.DQS_STAGING_DATA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      length="10"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[FullName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[FullName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[FullName]"
+                      name="FullName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTypeName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeTypeName]"
+                      name="EmployeeTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[HireDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireDate]"
+                      name="HireDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContinuousServiceDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContinuousServiceDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContinuousServiceDate]"
+                      name="ContinuousServiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationStartDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ProbationStartDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationStartDate]"
+                      name="ProbationStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationEndDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ProbationEndDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ProbationEndDate]"
+                      name="ProbationEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EndEmploymentDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EndEmploymentDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EndEmploymentDate]"
+                      name="EndEmploymentDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionStartDateForConversion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PositionStartDateForConversion]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionStartDateForConversion]"
+                      name="PositionStartDateForConversion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BenefitServiceDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BenefitServiceDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BenefitServiceDate]"
+                      name="BenefitServiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyServiceDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyServiceDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyServiceDate]"
+                      name="CompanyServiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[SupervisoryOrganisationPositionManagementOrg]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[SupervisoryOrganisationPositionManagementOrg]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[SupervisoryOrganisationPositionManagementOrg]"
+                      name="SupervisoryOrganisationPositionManagementOrg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CostCenterOrganisation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CostCenterOrganisation]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CostCenterOrganisation]"
+                      name="CostCenterOrganisation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyOrganisation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyOrganisation]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyOrganisation]"
+                      name="CompanyOrganisation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[RegionOrganisation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[RegionOrganisation]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[RegionOrganisation]"
+                      name="RegionOrganisation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[MatrixOrganisation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[MatrixOrganisation]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[MatrixOrganisation]"
+                      name="MatrixOrganisation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessUnitOrganisation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BusinessUnitOrganisation]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessUnitOrganisation]"
+                      name="BusinessUnitOrganisation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization1]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization1]"
+                      name="CustomOrganization1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization2]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization2]"
+                      name="CustomOrganization2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization3]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization3]"
+                      name="CustomOrganization3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization4]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CustomOrganization4]"
+                      name="CustomOrganization4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobPositionID]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionID]"
+                      name="JobPositionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobPositionTitle]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobPositionTitle]"
+                      name="JobPositionTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobCode]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[JobCode]"
+                      name="JobCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PositionTitle]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PositionTitle]"
+                      name="PositionTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessTitle]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BusinessTitle]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[BusinessTitle]"
+                      name="BusinessTitle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[Location]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[Location]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[Location]"
+                      name="Location"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkSpace]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkSpace]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkSpace]"
+                      name="WorkSpace"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[TimeType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[TimeType]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[TimeType]"
+                      name="TimeType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DefaultWeeklyHours]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DefaultWeeklyHours]"
+                      length="50"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DefaultWeeklyHours]"
+                      name="DefaultWeeklyHours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ScheduledWeeklyHours]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ScheduledWeeklyHours]"
+                      length="50"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ScheduledWeeklyHours]"
+                      name="ScheduledWeeklyHours"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PayTypeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PayTypeName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[PayTypeName]"
+                      name="PayTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalJobClassificationName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AdditionalJobClassificationName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalJobClassificationName]"
+                      name="AdditionalJobClassificationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CriticalJob]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CriticalJob]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CriticalJob]"
+                      name="CriticalJob"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DifficultyToFill]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DifficultyToFill]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DifficultyToFill]"
+                      name="DifficultyToFill"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyInsiderTypeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyInsiderTypeName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[CompanyInsiderTypeName]"
+                      name="CompanyInsiderTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AnnualWorkPeriodName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AnnualWorkPeriodName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AnnualWorkPeriodName]"
+                      name="AnnualWorkPeriodName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DisbursementPlanPeriodName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DisbursementPlanPeriodName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[DisbursementPlanPeriodName]"
+                      name="DisbursementPlanPeriodName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkHoursProfileDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkHoursProfileDescription]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkHoursProfileDescription]"
+                      name="WorkHoursProfileDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkShiftName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkShiftName]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[WorkShiftName]"
+                      name="WorkShiftName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[HireReason]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[HireReason]"
+                      name="HireReason"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentTypes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[InternationalAssignmentTypes]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentTypes]"
+                      name="InternationalAssignmentTypes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[InternationalAssignmentReason]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[InternationalAssignmentReason]"
+                      name="InternationalAssignmentReason"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalPosition]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AdditionalPosition]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[AdditionalPosition]"
+                      name="AdditionalPosition"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeContractType]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractType]"
+                      name="EmployeeContractType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeContractStatus]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[EmployeeContractStatus]"
+                      name="EmployeeContractStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractDescription]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractDescription]"
+                      name="ContractDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractEffectiveDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractEffectiveDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractEffectiveDate]"
+                      name="ContractEffectiveDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      name="ContractStartDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      dataType="wstr"
+                      length="10"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[FullName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FullName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[HireDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="HireDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContinuousServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContinuousServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ProbationStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProbationStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ProbationEndDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProbationEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EndEmploymentDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="EndEmploymentDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PositionStartDateForConversion]"
+                      dataType="wstr"
+                      length="255"
+                      name="PositionStartDateForConversion" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BenefitServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="BenefitServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyServiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[SupervisoryOrganisationPositionManagementOrg]"
+                      dataType="wstr"
+                      length="255"
+                      name="SupervisoryOrganisationPositionManagementOrg" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CostCenterOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="CostCenterOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[RegionOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="RegionOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[MatrixOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="MatrixOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BusinessUnitOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      name="BusinessUnitOrganisation" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization1]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization1" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization2]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization2" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization3]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization3" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CustomOrganization4]"
+                      dataType="wstr"
+                      length="255"
+                      name="CustomOrganization4" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobPositionID]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobPositionID" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobPositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobPositionTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[JobCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="JobCode" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="PositionTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[BusinessTitle]"
+                      dataType="wstr"
+                      length="255"
+                      name="BusinessTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[Location]"
+                      dataType="wstr"
+                      length="255"
+                      name="Location" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkSpace]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkSpace" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[TimeType]"
+                      dataType="wstr"
+                      length="255"
+                      name="TimeType" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DefaultWeeklyHours]"
+                      dataType="wstr"
+                      length="50"
+                      name="DefaultWeeklyHours" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ScheduledWeeklyHours]"
+                      dataType="wstr"
+                      length="50"
+                      name="ScheduledWeeklyHours" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[PayTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="PayTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AdditionalJobClassificationName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AdditionalJobClassificationName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CriticalJob]"
+                      dataType="wstr"
+                      length="255"
+                      name="CriticalJob" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DifficultyToFill]"
+                      dataType="wstr"
+                      length="255"
+                      name="DifficultyToFill" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[CompanyInsiderTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      name="CompanyInsiderTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AnnualWorkPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      name="AnnualWorkPeriodName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[DisbursementPlanPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      name="DisbursementPlanPeriodName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkHoursProfileDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkHoursProfileDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[WorkShiftName]"
+                      dataType="wstr"
+                      length="255"
+                      name="WorkShiftName" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[HireReason]"
+                      dataType="wstr"
+                      length="255"
+                      name="HireReason" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[InternationalAssignmentTypes]"
+                      dataType="wstr"
+                      length="255"
+                      name="InternationalAssignmentTypes" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[InternationalAssignmentReason]"
+                      dataType="wstr"
+                      length="255"
+                      name="InternationalAssignmentReason" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[AdditionalPosition]"
+                      dataType="wstr"
+                      length="255"
+                      name="AdditionalPosition" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeContractType]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeContractType" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[EmployeeContractStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployeeContractStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractDescription]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractEffectiveDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractEffectiveDate" />
+                    <externalMetadataColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractStartDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[FullName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[FullName]"
+                      name="FullName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeTypeName]"
+                      name="EmployeeTypeName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[HireDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[HireDate]"
+                      name="HireDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContinuousServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContinuousServiceDate]"
+                      name="ContinuousServiceDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ProbationStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ProbationStartDate]"
+                      name="ProbationStartDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ProbationEndDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ProbationEndDate]"
+                      name="ProbationEndDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EndEmploymentDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EndEmploymentDate]"
+                      name="EndEmploymentDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PositionStartDateForConversion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PositionStartDateForConversion]"
+                      name="PositionStartDateForConversion" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BenefitServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BenefitServiceDate]"
+                      name="BenefitServiceDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyServiceDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyServiceDate]"
+                      name="CompanyServiceDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[SupervisoryOrganisationPositionManagementOrg]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[SupervisoryOrganisationPositionManagementOrg]"
+                      name="SupervisoryOrganisationPositionManagementOrg" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CostCenterOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CostCenterOrganisation]"
+                      name="CostCenterOrganisation" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyOrganisation]"
+                      name="CompanyOrganisation" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[RegionOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[RegionOrganisation]"
+                      name="RegionOrganisation" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[MatrixOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[MatrixOrganisation]"
+                      name="MatrixOrganisation" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BusinessUnitOrganisation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BusinessUnitOrganisation]"
+                      name="BusinessUnitOrganisation" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization1]"
+                      name="CustomOrganization1" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization2]"
+                      name="CustomOrganization2" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization3]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization3]"
+                      name="CustomOrganization3" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization4]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CustomOrganization4]"
+                      name="CustomOrganization4" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobPositionID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobPositionID]"
+                      name="JobPositionID" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobPositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobPositionTitle]"
+                      name="JobPositionTitle" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[JobCode]"
+                      name="JobCode" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PositionTitle]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PositionTitle]"
+                      name="PositionTitle" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BusinessTitle]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[BusinessTitle]"
+                      name="BusinessTitle" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[Location]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[Location]"
+                      name="Location" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkSpace]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkSpace]"
+                      name="WorkSpace" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[TimeType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[TimeType]"
+                      name="TimeType" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DefaultWeeklyHours]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DefaultWeeklyHours]"
+                      name="DefaultWeeklyHours" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ScheduledWeeklyHours]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ScheduledWeeklyHours]"
+                      name="ScheduledWeeklyHours" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PayTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[PayTypeName]"
+                      name="PayTypeName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AdditionalJobClassificationName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AdditionalJobClassificationName]"
+                      name="AdditionalJobClassificationName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CriticalJob]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CriticalJob]"
+                      name="CriticalJob" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DifficultyToFill]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DifficultyToFill]"
+                      name="DifficultyToFill" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyInsiderTypeName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[CompanyInsiderTypeName]"
+                      name="CompanyInsiderTypeName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AnnualWorkPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AnnualWorkPeriodName]"
+                      name="AnnualWorkPeriodName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DisbursementPlanPeriodName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[DisbursementPlanPeriodName]"
+                      name="DisbursementPlanPeriodName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkHoursProfileDescription]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkHoursProfileDescription]"
+                      name="WorkHoursProfileDescription" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkShiftName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[WorkShiftName]"
+                      name="WorkShiftName" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[HireReason]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[HireReason]"
+                      name="HireReason" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[InternationalAssignmentTypes]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[InternationalAssignmentTypes]"
+                      name="InternationalAssignmentTypes" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[InternationalAssignmentReason]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[InternationalAssignmentReason]"
+                      name="InternationalAssignmentReason" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AdditionalPosition]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[AdditionalPosition]"
+                      name="AdditionalPosition" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeContractType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeContractType]"
+                      name="EmployeeContractType" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeContractStatus]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[EmployeeContractStatus]"
+                      name="EmployeeContractStatus" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractDescription]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractDescription]"
+                      name="ContractDescription" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractEffectiveDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractEffectiveDate]"
+                      name="ContractEffectiveDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      name="ContractStartDate" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export to XLSX and TXT Files.Paths[OLE DB Source Output]"
+              endId="Package\Export to XLSX and TXT Files\Excel Destination.Inputs[Excel Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export to XLSX and TXT Files\Source for XLSX.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert Scope Rows to the table HRDC006"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6cb6b63a-19f5-4703-b227-12fa7f97eefd}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert Scope Rows to the table HRDC006"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+          SQLTask:SqlStatementSource="insert into [WD].[HRDC006_EmployeePositionManagement]&#xA;(EmployeeID,FullName,EmployeeTypeName,HireDate,EndEmploymentDate,PositionStartDateForConversion,BenefitServiceDate,CompanyServiceDate,SupervisoryOrganisationPositionManagementOrg,&#xA;JobPositionID,TimeType,EmployeeContractType,ContractEffectiveDate,ContractStartDate,zWAMIKey,zSource,zLoadDate)&#xA;SELECT &#xA;   EmployeeID &#xA; , FirstName+'_'+Surname as FullName&#xA; , EmploymentType as EmployeeTypeName&#xA; , es.DateCommenced as HireDate &#xA; , es.ContractExpiryDate as EndEmploymentDate&#xA; , es.ActualDateEffective as PositionStartDateForConversion&#xA; , es.AdminPayrollFrom as BenefitServiceDate&#xA; , es.AdminLeaveFrom as CompanyServiceDate&#xA; , es.OrgUnitID as SupervisoryOrganisationPositionManagementOrg&#xA; , es.PositionID as JobPositionID&#xA; , es.AttendanceType as TimeType&#xA; , es.EmploymentType as EmployeeContractType&#xA; , es.ActualDateEffective as ContractEffectiveDate&#xA; , es.ActualDateEffective as ContractStartDate &#xA; ,es.WAMIKey as zWAMIKey&#xA; ,zSource&#xA; ,convert(varchar, getdate(), 20) as zLoadDate&#xA;FROM [WD].[EmpScope] es &#xA;where zExclude is null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table HRDC006"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Truncate table HRDC006"
+      DTS:DTSID="{be19d01a-12e1-436a-99f2-0fdbdcb62f24}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table HRDC006"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+          SQLTask:SqlStatementSource="truncate table wd.hrdc006_EmployeePositionManagement" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update JobPositionTitle,PayTypeName,WorkHoursProfileDescription,ScheduledWeeklyHours,zScheduledWeeklyHours(T001)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4ddd0370-9239-4f65-8f2b-20069711c62b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update JobPositionTitle,PayTypeName,WorkHoursProfileDescription,ScheduledWeeklyHours,zScheduledWeeklyHours(T001)"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+          SQLTask:SqlStatementSource="update [WD].[HRDC006_EmployeePositionManagement]&#xA;set JobPositionTitle=T001F100_ACTUAL_JOB_TITLE&#xA;,PayTypeName=T001F235_PAYMENT_TYPE&#xA;,WorkHoursProfileDescription=T001F120_ACTUAL_JOB_CODE&#xA;,ScheduledWeeklyHours=T001F315_HOURS_PER_WEEK&#xA;,zScheduledWeeklyHours=SUBSTRING(T001.T001F315_HOURS_PER_WEEK,1,2)+'.'+replace(left(round((100.0 / 60.0) *substring(T001.T001F315_HOURS_PER_WEEK,4,2) ,2),2),'.','0')&#xA;from AUR.T001_BASIC_DETAILS t001&#xA;inner join [WD].[HRDC006_EmployeePositionManagement] epm&#xA;on epm.EmployeeID=t001.T001F005_EMPLOYEE_NO &#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update ProbationEndDate(T028)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{af83922b-5375-427f-80bb-9ab432c024b6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update ProbationEndDate(T028)"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+          SQLTask:SqlStatementSource="update [WD].[HRDC006_EmployeePositionManagement]&#xA;set ProbationEndDate=PROBATION_DATE&#xA;from wd.svHRDC006_MinProbationDate_Sel vwP&#xA;inner join [WD].[HRDC006_EmployeePositionManagement] epm&#xA;on epm.EmployeeID=vwP.T028F005_EMPLOYEE_NO&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update RegionOrganisation,PositionTitle,BusinessTitle,Location,AdditionalJobClassificationName,DefaultWeeklyHours,zDefaultWeeklyHours(T101)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0fa1112f-6440-408d-91ef-6d2521d34a09}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update RegionOrganisation,PositionTitle,BusinessTitle,Location,AdditionalJobClassificationName,DefaultWeeklyHours,zDefaultWeeklyHours(T101)"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{277D504E-DB42-42E3-9FD5-6B76E915E68D}"
+          SQLTask:SqlStatementSource="update [WD].[HRDC006_EmployeePositionManagement]&#xA;set RegionOrganisation=T101F035_LOCATION_CODE&#xA;,PositionTitle=T101F045_POSITION_TITLE&#xA;,BusinessTitle=T101F050_FULL_TITLE&#xA;,AdditionalJobClassificationName=T101F020_CLASSIFICATION&#xA;,Location=T101F035_LOCATION_CODE&#xA;,DefaultWeeklyHours=T101F095_HOURS_PER_WEEK&#xA;,zDefaultWeeklyHours=SUBSTRING(T101.T101F095_HOURS_PER_WEEK,1,2)+'.'+replace(left(round((100.0 / 60.0) *substring(T101.T101F095_HOURS_PER_WEEK,4,2) ,2),2),'.','0')&#xA;from AUR.T101_POSITION t101&#xA;inner join [WD].[HRDC006_EmployeePositionManagement] epm&#xA;on epm.JobPositionID=t101.T101F005_POSITION_NO&#xA;go" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7ae18c94-2d84-4810-ade8-66c15bc20055}"
+      DTS:From="Package\Truncate table HRDC006"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Insert Scope Rows to the table HRDC006" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7b795300-3960-4b07-bdbf-b84765d8b14e}"
+      DTS:From="Package\Insert Scope Rows to the table HRDC006"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update RegionOrganisation,PositionTitle,BusinessTitle,Location,AdditionalJobClassificationName,DefaultWeeklyHours,zDefaultWeeklyHours(T101)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{fe07a894-9fb8-4b7b-9281-7e772b23a845}"
+      DTS:From="Package\Update RegionOrganisation,PositionTitle,BusinessTitle,Location,AdditionalJobClassificationName,DefaultWeeklyHours,zDefaultWeeklyHours(T101)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update ProbationEndDate(T028)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{d41121b0-55be-436f-b7d1-8f33e17fb262}"
+      DTS:From="Package\Update ProbationEndDate(T028)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update JobPositionTitle,PayTypeName,WorkHoursProfileDescription,ScheduledWeeklyHours,zScheduledWeeklyHours(T001)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C550996-6A0F-4885-87D2-9BE3717B1486}"
+      DTS:From="Package\Update JobPositionTitle,PayTypeName,WorkHoursProfileDescription,ScheduledWeeklyHours,zScheduledWeeklyHours(T001)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Export to XLSX and TXT Files" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Export to XLSX and TXT Files"
+          TopLeft="347.5,774" />
+        <NodeLayout
+          Size="281,42"
+          Id="Package\Insert Scope Rows to the table HRDC006"
+          TopLeft="319.5,162" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Truncate table HRDC006"
+          TopLeft="359,60" />
+        <NodeLayout
+          Size="695,42"
+          Id="Package\Update JobPositionTitle,PayTypeName,WorkHoursProfileDescription,ScheduledWeeklyHours,zScheduledWeeklyHours(T001)"
+          TopLeft="112.5,468" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Update ProbationEndDate(T028)"
+          TopLeft="340,366" />
+        <NodeLayout
+          Size="800,42"
+          Id="Package\Update RegionOrganisation,PositionTitle,BusinessTitle,Location,AdditionalJobClassificationName,DefaultWeeklyHours,zDefaultWeeklyHours(T101)"
+          TopLeft="60,264" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="460,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="460,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="460,306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="460,408">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="460,510">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,264"
+              Start="0,0"
+              End="0,256.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,256.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export to XLSX and TXT Files">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Export to XLSX and TXT Files\Excel Destination"
+          TopLeft="423,485" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Export to XLSX and TXT Files\Source for XLSX"
+          TopLeft="556,250" />
+        <EdgeLayout
+          Id="Package\Export to XLSX and TXT Files.Paths[OLE DB Source Output]"
+          TopLeft="636.5,292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-131.5,193"
+              Start="0,0"
+              End="-131.5,185.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,92.5"
+                    Point2="0,96.5"
+                    Point3="-4,96.5" />
+                  <mssgle:LineSegment
+                    End="-127.5,96.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.5,96.5"
+                    Point2="-131.5,96.5"
+                    Point3="-131.5,100.5" />
+                  <mssgle:LineSegment
+                    End="-131.5,185.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export to XLSX and TXT Files\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

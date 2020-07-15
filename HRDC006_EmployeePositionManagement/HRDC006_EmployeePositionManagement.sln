@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "HRDC006_EmployeePositionManagement", "HRDC006_EmployeePositionManagement.dtproj", "{193F69AF-14E4-4079-9DDC-8A839F697FD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193F69AF-14E4-4079-9DDC-8A839F697FD1}.Development|Default.ActiveCfg = Development
+		{193F69AF-14E4-4079-9DDC-8A839F697FD1}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC8E2FAF-9A1E-4635-972A-16D64533C621}
+	EndGlobalSection
+EndGlobal
