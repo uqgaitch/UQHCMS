@@ -4,6 +4,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 ALTER view [AUR].[HRDC004_ApplicantBioraphicData_InsSel] as
 
+
 SELECT DISTINCT T001.T001F005_EMPLOYEE_NO as EmployeeID
    , 'AUS' AS CountryISOCode
    , '' as RegionOfBirth
